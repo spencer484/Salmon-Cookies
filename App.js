@@ -7,38 +7,25 @@ var parent = document.getElementById('table');
 
 
 
-function Location(minCustomers, maxCustomers, averageCookieSale, locationName) {
+function Location(locationName, minCustomers, maxCustomers, averageCookieSale,) {
+  this.location = locationName;
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.averageCookieSale = averageCookieSale;
-  this.location = locationName;
-  this.totalCookiesForTheDay = 0;
-
-  // an array of customers each hour
   this.customersEachHour = [];
-
-  // an array of cookies sold each hour
   this.cookiesSoldEachHour = [];
-
+  this.totalCookiesForTheDay = 0;
   allLocations.push(this);
-  // this.render();
 }
 
-// function to generate my customers each hour
 Location.prototype.calculateCustomersEachHour = function () {
-  // the job of this method is to populate the customersEachHour array
-  // use the min minCust and the maxCust in a random number function to generate a random number
-  // push that random number to the array
   for (var i = 0; i < storeHoursArr.length; i++) {
     var customers = getRandomNumber(this.minCustomers, this.maxCustomers);
     this.customersEachHour.push(customers)
   }
 }
 
-// function to generate our cookiesSoldEachHour array
 Location.prototype.calculateCookiesSoldEachHour = function () {
-  // loop through my customersEachHour array and multiply each value by the average cookie sale
-  // push that number into my cookiesSoldEachHour array
   for (var i = 0; i < this.customersEachHour.length; i++) {
     var cookiesSoldForOneHour = Math.ceil(this.averageCookieSale * this.customersEachHour[i]);
     this.cookiesSoldEachHour.push(cookiesSoldForOneHour);
@@ -70,7 +57,7 @@ var paris = new Location(20, 38, 2.3, 'Paris');
 
 
 function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function generateHeader() {
@@ -94,32 +81,27 @@ function generateHeader() {
 
 generateHeader();
 
-// Loop over my allLocations array (which is full of my object instances) and call my calculateCustomersEachHour prototype followed by my calculateCookiesSoldEachHour prototype.
-// function generateContent() {
+
 for (var i = 0; i < allLocations.length; i++) {
   allLocations[i].calculateCustomersEachHour();
   allLocations[i].calculateCookiesSoldEachHour();
   allLocations[i].render();
 }
-// }
 
-// generateContent();
-
-
-// ______________________________________________
+// // ______________________________________________
 
 // var personForm = document.getElementById('form');
 // var allPeopleArray = [];
 
-// function Person(name, story, animal){
+// function Person(name, story, animal) {
 //   this.name = name;
 //   this.story = story;
-//   this.anaimal = animal;
+//   this.animal = animal;
 
 //   allPeopleArray.push(this);
 // }
 
-// function handleSubmit(event){
+// function handleSubmit(event) {
 //   event.preventDefault();
 
 //   var userName = event.target.userName.value;
