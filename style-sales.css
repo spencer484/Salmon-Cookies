@@ -1,0 +1,50 @@
+.container{
+  width: 80%;
+  margin: auto;
+}
+
+.nav{
+  text-align: center;
+  padding-bottom: 1em;
+  background-color: gray;
+  font-size: 20pt;
+  padding: 1em;
+}
+
+.header{
+  background-color: cadetblue;
+}
+
+h1{
+  text-align: center;
+  margin: auto;
+  padding: 1em;
+}
+
+table{
+  border: 5px solid black;
+  margin: auto;
+  width: 1000px;
+  height: 300px;
+}
+
+th{
+  border: 2px black;
+
+}
+
+td{
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+}
+
+h3{
+  text-align: center;
+}
+
+form{
+  width: 750px;
+  margin: auto;
+  text-align: left;
+}

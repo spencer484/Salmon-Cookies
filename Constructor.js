@@ -4,6 +4,8 @@ var clock = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '
 var parentElement = document.getElementById('table');
 var allStores = [];
 
+
+
 function Location(name, minPeople, maxPeople, avgCookie) {
   this.locationName = name;
   this.minPeople = minPeople;
@@ -27,6 +29,7 @@ Location.prototype.cookiesPerHour = function () {
 function generateHeader() {
   var tableRow = document.createElement('tr');
   var blank = document.createElement('td');
+  blank.textContent = 'Cities';
   tableRow.appendChild(blank);
   for (var i = 0; i < clock.length; i++) {
     var tableHead = document.createElement('th');
@@ -38,8 +41,8 @@ function generateHeader() {
   tableRow.appendChild(total);
   parentElement.appendChild(tableRow);
 }
-
 generateHeader();
+
 
 Location.prototype.renderTableList = function () {
   var tableRow = document.createElement('tr');
@@ -61,23 +64,27 @@ var seattle = new Location('Seattle', 23, 65, 6.3);
 seattle.cookiesPerHour();
 seattle.renderTableList();
 
+
 var tokyo = new Location('Tokyo', 3, 24, 1.2);
 tokyo.cookiesPerHour();
 tokyo.renderTableList();
+
 
 var dubai = new Location('Dubai', 11, 38, 3.7);
 dubai.cookiesPerHour();
 dubai.renderTableList();
 
+
 var paris = new Location('Paris', 20, 38, 2.3);
 paris.cookiesPerHour();
 paris.renderTableList();
+
 
 var lima = new Location('Lima', 2, 16, 4.6);
 lima.cookiesPerHour();
 lima.renderTableList();
 
-// console.log(allStores);
+
 
 var form = document.getElementById('form')
 
@@ -91,3 +98,23 @@ form.addEventListener('submit', function (event) {
   storeName.cookiesPerHour();
   storeName.renderTableList();
 });
+
+
+function footer() {
+  var footerRow = document.createElement('tr');
+  var dailyTotalAllStores = document.createElement('td');
+  dailyTotalAllStores.textContent = 'Daily Total of All Stores per Hour';
+  footerRow.appendChild(dailyTotalAllStores);
+  for (var i = 0; i < clock.length; i++) {
+    var hourlyTotals = 0;
+    for (var j = 0; j < allStores.length; j++) {
+      hourlyTotals += allStores[j].hourlyCookies[i];
+    }
+    var footerData = document.createElement('td')
+    footerData.textContent = hourlyTotals;
+    footerRow.appendChild(footerData);
+  }
+  parentElement.appendChild(footerRow);
+}
+footer();
+
